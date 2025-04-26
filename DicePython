@@ -1,0 +1,36 @@
+from random import randint
+
+def make_fair_dice(n):
+    """Returns an n-sided fair dice function."""
+    assert type(n) == int and n >= 1, 'Illegal value for number of sides'
+    def dice():
+        return randint(1, n)
+    return dice
+
+def play():
+    print("Welcome!")
+
+   # Creates a 6-sided dice using the make_fair_dice function.
+    dice = make_fair_dice(6)
+
+   # Prompts the user to input number of rolls.
+    rolls = int(input("How many rolls? "))
+    assert rolls > 0, "Must be a positive integer."
+    
+    score = 0
+    # Loop that will continue through rolls while storing the result and updating the total score.
+    for _ in range(rolls):
+        roll = dice()
+        print(f"You rolled: {roll}")
+        score += roll
+    
+    print(f"Your total score is: {score}")
+
+    # Determines whether player rolled high enough with an average more than 4 per roll. 
+    if score > rolls * 4:
+        print("You win!")
+    else:
+        print("You lose!")
+
+# Calls function to start game.
+play()
