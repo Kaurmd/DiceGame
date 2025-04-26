@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+//Creates a dice with 'n' sides
+int MakeFairDice(int n) {
+    //Creates a random number between 1 and n
+    return rand() % n + 1;
+}
+
+void play() {
+    cout << "Welcome!" << endl;
+    srand(time(0));
+
+    //6-sided dice
+    int sides = 6;
+
+    //Prompts user to enter number of rolls
+    int rolls;
+    cout << "How many rolls? ";
+    cin >> rolls;
+
+    //Determines whether input is valid
+    if (rolls <= 0) {
+        cout << "Error: Must be a positive integer." << endl;
+        return;
+    }
+
+    //Initializes score
+    int score = 0;
+
+    //Loops through the number of rolls, stores and prints result, and updates score
+    for (int i = 0; i < rolls; ++i) {
+        int roll = rollFairDice(sides);
+        cout << "You rolled: " << roll << endl;
+        score += roll;
+    }
+
+    //Displays the total score
+    cout << "Your total score is: " << score << endl;
+
+    //Determines whether the player wins
+    if (score > rolls * 4) {
+        cout << "You win!" << endl;
+    } else {
+        cout << "You lose!" << endl;
+    }
+}
+
+//Starts the game
+int main() {
+    play();
+    return 0;
+}
